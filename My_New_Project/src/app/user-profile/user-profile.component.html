@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="dark-side-block">
+    <p class="sort-text">Sort:</p>
+    <button class="btn" routerLink="">Back to list</button>
+
+  </div>
+  <div class="light-side-block">
+    <div class="header-block">
+      <h1>User profile</h1>
+      <button class="btn edit-btn" (click)="onEditClick(user)" [disabled]="readonly">Edit</button>
+    </div>
+    <div>
+      <form class="form-block" [formGroup]="formValue">
+        <label>Name</label>
+        <p *ngIf="readonly == false" class="readonly-input">{{user.name}}</p>
+        <input [ngStyle]="{'border-color':   this.formValue.controls['name'].invalid ? 'red' : 'black'}"
+               *ngIf="readonly == true" type="text" value="{{user.name}}" formControlName="name">
+        <label>User name</label>
+        <p *ngIf="readonly == false" class="readonly-input">{{user.username}}</p>
+        <input [ngStyle]="{'border-color':   this.formValue.controls['username'].invalid ? 'red' : 'black'}"
+               *ngIf="readonly == true" type="text" formControlName="username" value="{{user.username}}">
+        <label>E-mail</label>
+        <p *ngIf="readonly == false" class="readonly-input">{{user.email}}</p>
+        <input [ngStyle]="{'border-color':   this.formValue.controls['email'].invalid ? 'red' : 'black'}"
+               *ngIf="readonly == true" type="email" formControlName="email" value="{{user.email}}">
+        <label>Street</label>
+        <p *ngIf="readonly == false" class="readonly-input">{{user.address.street}}</p>
+        <input [ngStyle]="{'border-color':   this.formValue.controls['street'].invalid ? 'red' : 'black'}"
+               *ngIf="readonly == true" type="text" value="{{user.address.street}}" formControlName="street">
+        <label>City</label>
+        <p *ngIf="readonly == false" class="readonly-input">{{user.address.city}}</p>
+        <input [ngStyle]="{'border-color':   this.formValue.controls['city'].invalid ? 'red' : 'black'}"
+               *ngIf="readonly == true" type="text" value="{{user.address.city}}" formControlName="city">
+        <label>Zipcode</label>
+        <p *ngIf="readonly == false" class="readonly-input">{{user.address.zipcode}}</p>
+        <input [ngStyle]="{'border-color':   this.formValue.controls['zipCode'].invalid ? 'red' : 'black'}"
+               *ngIf="readonly == true" type="text" value="{{user.address.zipcode}}" formControlName="zipCode">
+        <label>Phone</label>
+        <p *ngIf="readonly == false" class="readonly-input">{{user.phone}}</p>
+        <input [ngStyle]="{'border-color':   this.formValue.controls['phone'].invalid ? 'red' : 'black'}"
+               *ngIf="readonly == true" type="tel" placeholder="{{user.phone}}" value="{{user.phone}}"
+               formControlName="phone">
+        <label>Website</label>
+        <p *ngIf="readonly == false" class="readonly-input">{{user.website}}</p>
+        <input [ngStyle]="{'border-color':   this.formValue.controls['website'].invalid ? 'red' : 'black'}"
+               *ngIf="readonly == true" type="text" value="{{user.website}}" formControlName="website">
+        <label>Comment</label>
+        <textarea></textarea>
+      </form>
+    </div>
+    <button class="btn send-btn" (click)="onUpdateUserClick()" [disabled]="!readonly || formValue.invalid">Send</button>
+  </div>
+</div>
+
+<div *ngIf="isLoading" id="wrapper">
+
+  <div class="profile-main-loader">
+    <div class="loader">
+      <svg class="circular-loader"viewBox="25 25 50 50" >
+        <circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#70c542" stroke-width="2" />
+      </svg>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,40 @@
+<div class="container">
+<div class="dark-side-block">
+  <p class="sort-text">Sort:</p>
+  <button class="btn" (click)="sortByCity()" >by city</button>
+  <button class="btn" (click)="sortByCompany()">by company</button>
+</div>
+<div class="light-side-block">
+  <div>
+    <h1>List of users</h1>
+    <div class="info-block" *ngFor="let user of users">
+      <div class="cell">
+        <div class="labels">
+          <label>Full Name:</label>
+          <label>City:</label>
+          <label>Company:</label>
+        </div>
+        <div class="user-info">
+          <p>{{user.name}}</p>
+          <p>{{user.address.city}}</p>
+          <p>{{user.company.name}}</p>
+        </div>
+      </div>
+      <div class="details"><a  (click)="getDetails(user.id)">Details</a></div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+<div *ngIf="isLoading" id="wrapper">
+
+  <div class="profile-main-loader">
+    <div class="loader">
+      <svg class="circular-loader"viewBox="25 25 50 50" >
+        <circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#70c542" stroke-width="2" />
+      </svg>
+    </div>
+  </div>
+
+</div>
